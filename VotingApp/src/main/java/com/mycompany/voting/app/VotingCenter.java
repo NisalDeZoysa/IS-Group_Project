@@ -167,6 +167,7 @@ public class VotingCenter extends javax.swing.JFrame{
         
         try {
             dout.writeUTF(msgOut);
+            vote.setText("None");
         } catch (Exception ex) {
             Logger.getLogger(VotingCenter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -244,6 +245,10 @@ public class VotingCenter extends javax.swing.JFrame{
             e.printStackTrace();
         }
     }
+    
+public static void encryptAndSign(String input){
+    
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button1;

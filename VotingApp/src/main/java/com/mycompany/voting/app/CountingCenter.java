@@ -291,7 +291,7 @@ public class CountingCenter extends javax.swing.JFrame {
         }
     }
     
-public static void resolveDuplicateRoutes(String input){
+public static void verifyAndDecrypt(String input){
     
 }
 
