@@ -3,6 +3,7 @@ com\mycompany\voting\app\KeyUtils.class
 com\mycompany\voting\app\VotingCenter$6.class
 com\mycompany\voting\app\CountingCenter$2.class
 com\mycompany\voting\app\VotingCenter$3.class
+com\mycompany\voting\app\CountingCenter$7.class
 com\mycompany\voting\app\CountingCenter.class
 com\mycompany\voting\app\VotingCenter$7.class
 com\mycompany\voting\app\VotingCenter.class

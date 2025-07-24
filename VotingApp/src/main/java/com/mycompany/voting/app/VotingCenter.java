@@ -6,10 +6,20 @@ package com.mycompany.voting.app;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -147,7 +157,17 @@ public class VotingCenter extends javax.swing.JFrame{
         
         String finalVote = vote.getText();
         
-        switch(vote.getText()){
+        if(finalVote.equalsIgnoreCase("None")){
+            JFrame frame = new JFrame("Error");
+            
+            JOptionPane.showMessageDialog(
+                frame,
+                "Please insert your vote",
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }else{
+            switch(vote.getText()){
                 case "Candidate A":
                     msgOut = "A";
                     break;
@@ -163,13 +183,15 @@ public class VotingCenter extends javax.swing.JFrame{
                 default:
                     msgOut = "None";
                     break;
-        }
+            }
         
-        try {
-            dout.writeUTF(msgOut);
-            vote.setText("None");
-        } catch (Exception ex) {
-            Logger.getLogger(VotingCenter.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                // dout.writeUTF(msgOut);
+                encryptAndSign(msgOut);
+                vote.setText("None");
+            } catch (Exception ex) {
+                Logger.getLogger(VotingCenter.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_sendButtonActionPerformed
 
@@ -229,6 +251,9 @@ public class VotingCenter extends javax.swing.JFrame{
                 new VotingCenter().setVisible(true);
             }
         });
+        
+        System.out.println("Voting Center Client");
+        System.out.println("========================");
 
         try {
             socket = new Socket(InetAddress.getLocalHost(), 6600);
@@ -246,8 +271,26 @@ public class VotingCenter extends javax.swing.JFrame{
         }
     }
     
-public static void encryptAndSign(String input){
+public static void encryptAndSign(String input) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, Exception{
+    // Use relative paths that work from the bin directory
+    PrivateKey clientPrivateKey = KeyUtils.loadPrivateKey("keys/client_private.key");
+    PublicKey serverPublicKey = KeyUtils.loadPublicKey("keys/server_public.key");
+            
+    // Encrypt vote
+    Cipher cipher = Cipher.getInstance("RSA");
+    cipher.init(Cipher.ENCRYPT_MODE, serverPublicKey);
+    byte[] encryptedVote = cipher.doFinal(input.getBytes());
+
+    // Sign the encrypted vote
+    Signature signature = Signature.getInstance("SHA256withRSA");
+    signature.initSign(clientPrivateKey);
+    signature.update(encryptedVote);
+    byte[] signedEncryption = signature.sign();
+                
+    dout.writeUTF(Base64.getEncoder().encodeToString(encryptedVote));
+    dout.writeUTF(Base64.getEncoder().encodeToString(signedEncryption));
     
+    System.out.println("Encrypt and Signing Successful");
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,6 +10,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.util.Base64;
+import java.security.Signature;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.Cipher;
 
 /**
  *
@@ -43,25 +50,27 @@ public class CountingCenter extends javax.swing.JFrame {
         candidateAVoteCount = new javax.swing.JTextField();
         candidateBVoteCount = new javax.swing.JTextField();
         candidateCVoteCount = new javax.swing.JTextField();
-        sign = new javax.swing.JTextField();
+        verification = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         candidateDVoteCount = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        sign = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         msg = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Counting Center");
-        setMinimumSize(new java.awt.Dimension(510, 380));
-        setPreferredSize(new java.awt.Dimension(510, 380));
+        setMinimumSize(new java.awt.Dimension(530, 410));
+        setPreferredSize(new java.awt.Dimension(530, 410));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Signature Verification: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 130, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 130, -1));
 
         jLabel2.setText("Candidate B Vote Count");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 160, -1));
@@ -94,13 +103,13 @@ public class CountingCenter extends javax.swing.JFrame {
         });
         getContentPane().add(candidateCVoteCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 71, -1));
 
-        sign.setText("None");
-        sign.addActionListener(new java.awt.event.ActionListener() {
+        verification.setText("None");
+        verification.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signActionPerformed(evt);
+                verificationActionPerformed(evt);
             }
         });
-        getContentPane().add(sign, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 330, -1));
+        getContentPane().add(verification, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 330, -1));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setFocusable(false);
@@ -124,9 +133,6 @@ public class CountingCenter extends javax.swing.JFrame {
         jLabel5.setText("Candidate A Vote Count");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 160, -1));
 
-        jLabel6.setText("Receiving Msg:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 110, -1));
-
         candidateDVoteCount.setEditable(false);
         candidateDVoteCount.setText("0");
         candidateDVoteCount.addActionListener(new java.awt.event.ActionListener() {
@@ -136,13 +142,27 @@ public class CountingCenter extends javax.swing.JFrame {
         });
         getContentPane().add(candidateDVoteCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 71, -1));
 
+        jLabel7.setText("Received Signature:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 120, -1));
+
+        sign.setText("None");
+        sign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sign, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 330, -1));
+
+        jLabel12.setText("Receiving Msg:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 110, -1));
+
         msg.setText("None");
         msg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 msgActionPerformed(evt);
             }
         });
-        getContentPane().add(msg, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 330, -1));
+        getContentPane().add(msg, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 330, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -151,9 +171,9 @@ public class CountingCenter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_candidateAVoteCountActionPerformed
 
-    private void signActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signActionPerformed
+    private void verificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_signActionPerformed
+    }//GEN-LAST:event_verificationActionPerformed
 
     private void candidateCVoteCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateCVoteCountActionPerformed
         // TODO add your handling code here:
@@ -162,6 +182,10 @@ public class CountingCenter extends javax.swing.JFrame {
     private void candidateDVoteCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateDVoteCountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_candidateDVoteCountActionPerformed
+
+    private void signActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signActionPerformed
 
     private void msgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgActionPerformed
         // TODO add your handling code here:
@@ -207,6 +231,9 @@ public class CountingCenter extends javax.swing.JFrame {
                 new CountingCenter().setVisible(true);
             }
         });
+        
+        System.out.println("Counting Center Server");
+        System.out.println("========================");
 
         try {
             serverSocket = new ServerSocket(6600);
@@ -243,32 +270,42 @@ public class CountingCenter extends javax.swing.JFrame {
         public void run() {
             try {
                 while (true) {
-                    String msgIn = din.readUTF();
-                    System.out.println(msgIn);
+                    // String msgIn = din.readUTF();
+                    String encryptedVote = din.readUTF();
+                    System.out.println(encryptedVote);
+                    String signature = din.readUTF();
+                    System.out.println(signature);
+                    
+                    msg.setText(encryptedVote);
+                    sign.setText(signature);
                     
                     int voteCountA = Integer.parseInt(candidateAVoteCount.getText());
                     int voteCountB = Integer.parseInt(candidateBVoteCount.getText());
                     int voteCountC = Integer.parseInt(candidateCVoteCount.getText());
                     int voteCountD = Integer.parseInt(candidateDVoteCount.getText());
                     
-                    switch(msgIn){
+                    String decryptedVote = "None";
+                    
+                    try {
+                        decryptedVote = verifyAndDecrypt(encryptedVote, signature);
+                    } catch (Exception ex) {
+                        Logger.getLogger(CountingCenter.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    switch(decryptedVote){
                         case "A":
-                            msg.setText(msgIn);
                             voteCountA++;
                             candidateAVoteCount.setText(Integer.toString(voteCountA));
                             break;
                         case "B":
-                            msg.setText(msgIn);
                             voteCountB++;
                             candidateBVoteCount.setText(Integer.toString(voteCountB));
                             break;
                         case "C":
-                            msg.setText(msgIn);
                             voteCountC++;
                             candidateCVoteCount.setText(Integer.toString(voteCountC));
                             break;
                         case "D":
-                            msg.setText(msgIn);
                             voteCountD++;
                             candidateDVoteCount.setText(Integer.toString(voteCountD));
                             break;
@@ -291,8 +328,32 @@ public class CountingCenter extends javax.swing.JFrame {
         }
     }
     
-public static void verifyAndDecrypt(String input){
+public static String verifyAndDecrypt(String encryptedVote, String signature) throws Exception{
+    PrivateKey serverPrivateKey = KeyUtils.loadPrivateKey("keys/server_private.key");
+    PublicKey clientPublicKey = KeyUtils.loadPublicKey("keys/client_public.key");
     
+    byte[] encryptedVoteBytes = Base64.getDecoder().decode(encryptedVote);
+    byte[] signatureBytes = Base64.getDecoder().decode(signature);
+
+    Signature sig = Signature.getInstance("SHA256withRSA");
+    sig.initVerify(clientPublicKey);
+    sig.update(encryptedVoteBytes);
+    boolean isVerified = sig.verify(signatureBytes);
+
+    if (isVerified) {
+        verification.setText("Successful");
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.DECRYPT_MODE, serverPrivateKey);
+        byte[] decryptedBytes = cipher.doFinal(encryptedVoteBytes);
+
+        String vote = new String(decryptedBytes);
+        System.out.println("Received verified vote: " + vote);
+        return vote;
+    } else {
+        System.out.println("Signature verification failed");
+        verification.setText("Failed");
+        return "Error";
+    }
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -303,14 +364,16 @@ public static void verifyAndDecrypt(String input){
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private static javax.swing.JTextField msg;
     private static javax.swing.JTextField sign;
+    private static javax.swing.JTextField verification;
     // End of variables declaration//GEN-END:variables
 }
