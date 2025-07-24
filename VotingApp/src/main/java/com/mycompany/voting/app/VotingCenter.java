@@ -158,13 +158,11 @@ public class VotingCenter extends javax.swing.JFrame{
         String finalVote = vote.getText();
         
         if(finalVote.equalsIgnoreCase("None")){
-            JFrame frame = new JFrame("Error");
-            
             JOptionPane.showMessageDialog(
-                frame,
-                "Please insert your vote",
-                "Error",
-                JOptionPane.ERROR_MESSAGE
+            this,
+            "Please insert your vote",
+            "Invalid Input",
+            JOptionPane.ERROR_MESSAGE
             );
         }else{
             switch(vote.getText()){
