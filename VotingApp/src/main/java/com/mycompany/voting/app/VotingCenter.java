@@ -49,6 +49,8 @@ public class VotingCenter extends javax.swing.JFrame{
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        vote = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Voting Center");
@@ -67,7 +69,7 @@ public class VotingCenter extends javax.swing.JFrame{
                 sendButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(sendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 210, 30));
+        getContentPane().add(sendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 120, 30));
 
         button1.setText("Vote");
         button1.addActionListener(new java.awt.event.ActionListener() {
@@ -110,8 +112,9 @@ public class VotingCenter extends javax.swing.JFrame{
         jLabel4.setText("Please insert your vote by clicking the vote button");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
 
-        jLabel5.setText("Candidate A");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 100, -1));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Your Vote: ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 70, 30));
 
         jLabel6.setText("Candidate B");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 100, -1));
@@ -119,12 +122,24 @@ public class VotingCenter extends javax.swing.JFrame{
         jLabel7.setText("Candidate C");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 100, -1));
 
+        jLabel8.setText("Candidate A");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 100, -1));
+
+        vote.setEditable(false);
+        vote.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        vote.setText("None");
+        vote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(vote, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 150, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
-        
+        vote.setText("Candidate D");
     }//GEN-LAST:event_button1ActionPerformed
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
@@ -138,16 +153,20 @@ public class VotingCenter extends javax.swing.JFrame{
     }//GEN-LAST:event_sendButtonActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-        // TODO add your handling code here:
+        vote.setText("Candidate A");
     }//GEN-LAST:event_button2ActionPerformed
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
-        // TODO add your handling code here:
+        vote.setText("Candidate B");
     }//GEN-LAST:event_button3ActionPerformed
 
     private void button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button6ActionPerformed
-        // TODO add your handling code here:
+        vote.setText("Candidate C");
     }//GEN-LAST:event_button6ActionPerformed
+
+    private void voteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voteActionPerformed
+        
+    }//GEN-LAST:event_voteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,6 +236,8 @@ public class VotingCenter extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JButton sendButton;
+    private javax.swing.JTextField vote;
     // End of variables declaration//GEN-END:variables
 }
