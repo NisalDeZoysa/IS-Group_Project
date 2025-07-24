@@ -19,6 +19,7 @@ public class Client {
         System.out.println("========================");
 
         try {
+            // Use relative paths that work from the bin directory
             PrivateKey clientPrivateKey = KeyUtils.loadPrivateKey("client_private.key");
             PublicKey serverPublicKey = KeyUtils.loadPublicKey("server_public.key");
 
@@ -26,7 +27,10 @@ public class Client {
 
             for (int i = 1; i <= 10; i++) {
                 System.out.println("\n--- Voter " + i + " ---");
+
+                System.out.println("Waiting for vote input...");
                 String vote = getVote(scanner);
+                System.out.println("Vote received: " + vote);
 
                 // Encrypt vote
                 Cipher cipher = Cipher.getInstance("RSA");
@@ -39,7 +43,7 @@ public class Client {
                 signature.update(encryptedVote);
                 byte[] signedEncryption = signature.sign();
 
-                // Send to server
+                System.out.println("Connecting to server to send vote #" + i + "...");
                 try (Socket socket = new Socket(InetAddress.getLocalHost(), port);
                      PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
 
@@ -49,7 +53,11 @@ public class Client {
                     System.out.println("Vote " + i + " sent successfully.");
                 } catch (Exception se) {
                     System.err.println("❌ Error sending vote " + i + ": " + se.getMessage());
+                    se.printStackTrace();
                 }
+
+                // Optional: short delay so you can see output clearly
+                Thread.sleep(300);
             }
 
             scanner.close();
