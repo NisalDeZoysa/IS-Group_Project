@@ -145,6 +145,26 @@ public class VotingCenter extends javax.swing.JFrame{
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
         String msgOut = "";
         
+        String finalVote = vote.getText();
+        
+        switch(vote.getText()){
+                case "Candidate A":
+                    msgOut = "A";
+                    break;
+                case "Candidate B":
+                    msgOut = "B";
+                    break;
+                case "Candidate C":
+                    msgOut = "C";
+                    break;
+                case "Candidate D":
+                    msgOut = "D";
+                    break;
+                default:
+                    msgOut = "None";
+                    break;
+        }
+        
         try {
             dout.writeUTF(msgOut);
         } catch (Exception ex) {

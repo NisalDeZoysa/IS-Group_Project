@@ -40,18 +40,18 @@ public class CountingCenter extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        textField1 = new javax.swing.JTextField();
-        textField2 = new javax.swing.JTextField();
-        textField3 = new javax.swing.JTextField();
-        textField4 = new javax.swing.JTextField();
+        candidateAVoteCount = new javax.swing.JTextField();
+        candidateBVoteCount = new javax.swing.JTextField();
+        candidateCVoteCount = new javax.swing.JTextField();
+        sign = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        textField5 = new javax.swing.JTextField();
-        textField6 = new javax.swing.JTextField();
+        candidateDVoteCount = new javax.swing.JTextField();
+        msg = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Counting Center");
@@ -72,35 +72,35 @@ public class CountingCenter extends javax.swing.JFrame {
         jLabel4.setText("Candidate C Vote Count");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 150, -1));
 
-        textField1.setEditable(false);
-        textField1.setText("0");
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        candidateAVoteCount.setEditable(false);
+        candidateAVoteCount.setText("0");
+        candidateAVoteCount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                candidateAVoteCountActionPerformed(evt);
             }
         });
-        getContentPane().add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 71, -1));
+        getContentPane().add(candidateAVoteCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 71, -1));
 
-        textField2.setEditable(false);
-        textField2.setText("0");
-        getContentPane().add(textField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 71, -1));
+        candidateBVoteCount.setEditable(false);
+        candidateBVoteCount.setText("0");
+        getContentPane().add(candidateBVoteCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 71, -1));
 
-        textField3.setEditable(false);
-        textField3.setText("0");
-        textField3.addActionListener(new java.awt.event.ActionListener() {
+        candidateCVoteCount.setEditable(false);
+        candidateCVoteCount.setText("0");
+        candidateCVoteCount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField3ActionPerformed(evt);
+                candidateCVoteCountActionPerformed(evt);
             }
         });
-        getContentPane().add(textField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 71, -1));
+        getContentPane().add(candidateCVoteCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 71, -1));
 
-        textField4.setText("None");
-        textField4.addActionListener(new java.awt.event.ActionListener() {
+        sign.setText("None");
+        sign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField4ActionPerformed(evt);
+                signActionPerformed(evt);
             }
         });
-        getContentPane().add(textField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 330, -1));
+        getContentPane().add(sign, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 330, -1));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setFocusable(false);
@@ -127,45 +127,45 @@ public class CountingCenter extends javax.swing.JFrame {
         jLabel6.setText("Receiving Msg:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 110, -1));
 
-        textField5.setEditable(false);
-        textField5.setText("0");
-        textField5.addActionListener(new java.awt.event.ActionListener() {
+        candidateDVoteCount.setEditable(false);
+        candidateDVoteCount.setText("0");
+        candidateDVoteCount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField5ActionPerformed(evt);
+                candidateDVoteCountActionPerformed(evt);
             }
         });
-        getContentPane().add(textField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 71, -1));
+        getContentPane().add(candidateDVoteCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 71, -1));
 
-        textField6.setText("None");
-        textField6.addActionListener(new java.awt.event.ActionListener() {
+        msg.setText("None");
+        msg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField6ActionPerformed(evt);
+                msgActionPerformed(evt);
             }
         });
-        getContentPane().add(textField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 330, -1));
+        getContentPane().add(msg, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 330, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void candidateAVoteCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateAVoteCountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
+    }//GEN-LAST:event_candidateAVoteCountActionPerformed
 
-    private void textField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField4ActionPerformed
+    private void signActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField4ActionPerformed
+    }//GEN-LAST:event_signActionPerformed
 
-    private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
+    private void candidateCVoteCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateCVoteCountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField3ActionPerformed
+    }//GEN-LAST:event_candidateCVoteCountActionPerformed
 
-    private void textField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField5ActionPerformed
+    private void candidateDVoteCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_candidateDVoteCountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField5ActionPerformed
+    }//GEN-LAST:event_candidateDVoteCountActionPerformed
 
-    private void textField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField6ActionPerformed
+    private void msgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField6ActionPerformed
+    }//GEN-LAST:event_msgActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,7 +213,7 @@ public class CountingCenter extends javax.swing.JFrame {
             
             while (true) { 
                 Socket socket = serverSocket.accept();
-                System.out.println("Train connected");
+                System.out.println("Voting Center connected");
 
                 // creating thread for each train connecting to the hub
                 Thread clientThread = new Thread(new ClientHandler(socket));
@@ -245,12 +245,29 @@ public class CountingCenter extends javax.swing.JFrame {
                 while (true) {
                     String msgIn = din.readUTF();
                     System.out.println(msgIn);
-
-                    char locationId = msgIn.charAt(0);
-                    char trainId = msgIn.charAt(1);
-                    char isEmergency = msgIn.charAt(2);
-                
-                    resolveDuplicateRoutes(Character.toString(trainId));
+                    
+                    int voteCountA = 0;
+                    int voteCountB = 0;
+                    int voteCountC = 0;
+                    int voteCountD = 0;
+                    
+                    switch(msgIn){
+                        case "A":
+                            msg.setText(msgIn);
+                            break;
+                        case "B":
+                            msg.setText(msgIn);
+                            break;
+                        case "C":
+                            msg.setText(msgIn);
+                            break;
+                        case "D":
+                            msg.setText(msgIn);
+                            break;
+                        default:
+                            System.out.println("Error");
+                            break;
+                    }
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -271,6 +288,10 @@ public static void resolveDuplicateRoutes(String input){
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JTextField candidateAVoteCount;
+    private static javax.swing.JTextField candidateBVoteCount;
+    private static javax.swing.JTextField candidateCVoteCount;
+    private static javax.swing.JTextField candidateDVoteCount;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -281,11 +302,7 @@ public static void resolveDuplicateRoutes(String input){
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private static javax.swing.JTextField textField1;
-    private static javax.swing.JTextField textField2;
-    private static javax.swing.JTextField textField3;
-    private static javax.swing.JTextField textField4;
-    private static javax.swing.JTextField textField5;
-    private static javax.swing.JTextField textField6;
+    private static javax.swing.JTextField msg;
+    private static javax.swing.JTextField sign;
     // End of variables declaration//GEN-END:variables
 }
