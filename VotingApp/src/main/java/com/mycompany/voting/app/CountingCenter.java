@@ -246,23 +246,31 @@ public class CountingCenter extends javax.swing.JFrame {
                     String msgIn = din.readUTF();
                     System.out.println(msgIn);
                     
-                    int voteCountA = 0;
-                    int voteCountB = 0;
-                    int voteCountC = 0;
-                    int voteCountD = 0;
+                    int voteCountA = Integer.parseInt(candidateAVoteCount.getText());
+                    int voteCountB = Integer.parseInt(candidateBVoteCount.getText());
+                    int voteCountC = Integer.parseInt(candidateCVoteCount.getText());
+                    int voteCountD = Integer.parseInt(candidateDVoteCount.getText());
                     
                     switch(msgIn){
                         case "A":
                             msg.setText(msgIn);
+                            voteCountA++;
+                            candidateAVoteCount.setText(Integer.toString(voteCountA));
                             break;
                         case "B":
                             msg.setText(msgIn);
+                            voteCountB++;
+                            candidateBVoteCount.setText(Integer.toString(voteCountB));
                             break;
                         case "C":
                             msg.setText(msgIn);
+                            voteCountC++;
+                            candidateCVoteCount.setText(Integer.toString(voteCountC));
                             break;
                         case "D":
                             msg.setText(msgIn);
+                            voteCountD++;
+                            candidateDVoteCount.setText(Integer.toString(voteCountD));
                             break;
                         default:
                             System.out.println("Error");
