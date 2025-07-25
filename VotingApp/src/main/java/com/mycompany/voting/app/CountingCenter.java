@@ -272,9 +272,12 @@ public class CountingCenter extends javax.swing.JFrame {
                 while (true) {
                     // String msgIn = din.readUTF();
                     String encryptedVote = din.readUTF();
-                    System.out.println(encryptedVote);
+                    // System.out.println(encryptedVote);
                     String signature = din.readUTF();
-                    System.out.println(signature);
+                    // System.out.println(signature);
+                    
+                    System.out.println("Received Encrypted Vote: " + " " + encryptedVote);
+                    System.out.println("Received Signature: " + " " + signature);
                     
                     msg.setText(encryptedVote);
                     sign.setText(signature);
@@ -341,13 +344,15 @@ public static String verifyAndDecrypt(String encryptedVote, String signature) th
     boolean isVerified = sig.verify(signatureBytes);
 
     if (isVerified) {
+        System.out.println("Signature verification successful");
         verification.setText("Successful");
+        
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, serverPrivateKey);
         byte[] decryptedBytes = cipher.doFinal(encryptedVoteBytes);
 
         String vote = new String(decryptedBytes);
-        System.out.println("Received verified vote: " + vote);
+        System.out.println("Received verified vote: Candidate " + vote);
         return vote;
     } else {
         System.out.println("Signature verification failed");

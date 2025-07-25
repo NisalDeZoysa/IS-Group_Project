@@ -288,6 +288,9 @@ public static void encryptAndSign(String input) throws IOException, NoSuchAlgori
     dout.writeUTF(Base64.getEncoder().encodeToString(encryptedVote));
     dout.writeUTF(Base64.getEncoder().encodeToString(signedEncryption));
     
+    System.out.println("Encrypted Vote: " + " " + Base64.getEncoder().encodeToString(encryptedVote));
+    System.out.println("Signature: " + " " + Base64.getEncoder().encodeToString(signedEncryption));
+    
     System.out.println("Encrypt and Signing Successful");
 }
 
